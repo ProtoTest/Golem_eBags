@@ -10,6 +10,9 @@ namespace PageObjects.eBags
     public class eBags_TabHeaderFooter : BasePageObject
     {
 
+
+
+
         public override void WaitForElements()
         {
             

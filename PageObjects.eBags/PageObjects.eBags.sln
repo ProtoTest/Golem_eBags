@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageObjects.eBags", "PageObjects.eBags\PageObjects.eBags.csproj", "{C4B78ED9-0563-477A-B06E-72351F0B12DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.eBags", "..\Tests.eBags\Tests.eBags.csproj", "{2119A549-CB5E-4DE8-A887-F63B54E03BEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Golem.Framework", "..\..\Golem\Golem.Framework\Golem.Framework.csproj", "{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{C4B78ED9-0563-477A-B06E-72351F0B12DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4B78ED9-0563-477A-B06E-72351F0B12DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4B78ED9-0563-477A-B06E-72351F0B12DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2119A549-CB5E-4DE8-A887-F63B54E03BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2119A549-CB5E-4DE8-A887-F63B54E03BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2119A549-CB5E-4DE8-A887-F63B54E03BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2119A549-CB5E-4DE8-A887-F63B54E03BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DABFC1CB-7C18-4AC7-AFA2-91C453E9E266}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
