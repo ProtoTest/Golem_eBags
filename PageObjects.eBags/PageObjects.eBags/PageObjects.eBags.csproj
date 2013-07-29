@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="eBags_EnabledFeatures.cs" />
     <Compile Include="eBags_SpitTests.cs" />
     <Compile Include="eBags_TabHeaderFooter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

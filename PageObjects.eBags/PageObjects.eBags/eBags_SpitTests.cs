@@ -25,10 +25,12 @@ namespace PageObjects.eBags
         Element EB_FeaturedSort_BSplit = new Element("EB_FeaturedSort_BSplit", By.LinkText("EB-featured-sort-control"));
         Element EB_FeaturedSort_CSplit = new Element("EB_FeaturedSort_CSplit", By.LinkText("EB-featured-sort-list-page-redesign"));
 
+        Element InternalTools_Button = new Element("InternalTools_Button", By.XPath("//header/nav/ul/li[2]/a"));
+        Element EnabledFeatures = new Element("EnabledFeatures", By.XPath("//*[@id='bodyWrapper']/div/ul/li[11]/a"));
+
         public static eBags_SpitTests OpenSplit(string url)
         {
             TestBaseClass.driver.Navigate().GoToUrl(url);
-            Thread.Sleep(2000);
             return new eBags_SpitTests();
         }
 
@@ -40,128 +42,46 @@ namespace PageObjects.eBags
             char HeaderFooterSplit;
             char FeaturedSortSplit;
 
-            //Determine the active split for the email acquisition first
-            FoundElements = EB_email_acquisition_split_test.FindElements(By.XPath("//[@class=" + SelectedPartitionClassName + "]")).ToList<IWebElement>();
-            if (FoundElements.Count > 0)
-            {
-                EmailAcquisitionSplit = DetermineSplit(FoundElements[0]);
-            }
-            else
-            {
-                EmailAcquisitionSplit = 'X';
-            }
-            //Determine the active split for the HeaderFooter
-            FoundElements.Clear();
-            FoundElements = EB_HeaderFooter_dept_redesign_split_test.FindElements(By.XPath("//[@class=" + SelectedPartitionClassName + "]")).ToList<IWebElement>();
-            if (FoundElements.Count > 0)
-            {
-                HeaderFooterSplit = DetermineSplit(FoundElements[0]);
-            }
-            else
-            {
-                HeaderFooterSplit = 'X';
-            }
-            //Determine the active split for the FeaturedSort There are three active splits for this
-            FoundElements.Clear();
-            FoundElements = EB_Featured_sort_split_test.FindElements(By.XPath("//*[@class=" + SelectedPartitionClassName + "]")).ToList<IWebElement>();
-            if (FoundElements.Count > 0)
-            {
-                FeaturedSortSplit = DetermineSplit(FoundElements[0]);
-            }
-            else
-            {
-                FeaturedSortSplit = 'X';
-            }
-            
-            //Select the appropriate email split
+            //The cookies on will be deleted at the start of each automated test
+            //The email acquisition and the featured sort should have no splits available
+            //The header-footer should have a selected by default 
             if (EmailSplit == 'A')
             {
-                if((EmailAcquisitionSplit == 'B') || (EmailAcquisitionSplit == 'X'))
-                {
-                    EB_email_ASplit.WaitUntilPresent().Click();
-                }
+                EB_email_ASplit.WaitUntilPresent().Click();
             }
-            if (EmailSplit == 'B')
+            else
             {
-                if((EmailAcquisitionSplit == 'A') || (EmailAcquisitionSplit == 'X'))
-                {
-                    EB_email_BSplit.WaitUntilPresent().Click();
-                }
-            }
-            //select the appropriate header/footer split
-            if (HFSplit == 'A')
-            {
-                if((HeaderFooterSplit == 'B') || (EmailAcquisitionSplit == 'X'))
-                {
-                    EB_HeaderFooter_ASplit.WaitUntilPresent().Click();
-                }
+                //BSplit
+                EB_email_BSplit.WaitUntilPresent().Click();
             }
             if (HFSplit == 'B')
             {
-                if((HeaderFooterSplit == 'A') || (HeaderFooterSplit == 'X'))
-                {
-                    EB_HeaderFooter_BSplit.WaitUntilPresent().Click();
-                }
+                EB_HeaderFooter_BSplit.WaitUntilPresent().Click();
             }
-            //Select the appropriate Featured Sort Split
             if (FSSplit == 'A')
             {
-                if ((FeaturedSortSplit == 'B') || (FeaturedSortSplit == 'C') || (FeaturedSortSplit == 'X'))
-                {
-                    EB_FeaturedSort_ASplit.WaitUntilPresent().Click();
-                }
+                EB_FeaturedSort_ASplit.WaitUntilPresent().Click();
             }
             if (FSSplit == 'B')
             {
-                if ((FeaturedSortSplit == 'A') || (FeaturedSortSplit == 'C') || (FeaturedSortSplit == 'X'))
-                {
-                    EB_FeaturedSort_BSplit.WaitUntilPresent().Click();
-                }
+                EB_FeaturedSort_BSplit.WaitUntilPresent().Click();
             }
             if (FSSplit == 'C')
             {
-                if ((FeaturedSortSplit == 'A') || (FeaturedSortSplit == 'B') || (FeaturedSortSplit == 'X'))
-                {
-                    EB_FeaturedSort_CSplit.WaitUntilPresent().Click();
-                }
+                EB_FeaturedSort_CSplit.WaitUntilPresent().Click();
             }
+
 
             return new eBags_SpitTests();
         }
 
-        private char DetermineSplit(IWebElement ElementToDetermine)
+        public eBags_EnabledFeatures ClickEnabledFeatures()
         {
-            char[] AvailableSplits = { 'A', 'B', 'C', 'X' };
-            string[] ElementParts;
-            int ReturnChar = 3;
-
-            ElementParts = ElementToDetermine.Text.Split('-');
-            if (ElementParts.Contains("A"))
-            {
-                ReturnChar = 0;
-            }
-            if (ElementParts.Contains("B"))
-            {
-                ReturnChar = 1;
-            }
-            if (!ElementParts.Contains("A") && !ElementParts.Contains("B"))
-            {
-                if (ElementParts.Contains("enabled"))
-                {
-                    ReturnChar = 0;
-                }
-                if (ElementParts.Contains("control"))
-                {
-                    ReturnChar = 1;
-                }
-                if (ElementParts.Contains("redesign"))
-                {
-                    ReturnChar = 2;
-                }
-            }
-
-            return AvailableSplits[ReturnChar];
+            InternalTools_Button.WaitUntilPresent().Click();
+            EnabledFeatures.WaitUntilPresent().Click();
+            return new eBags_EnabledFeatures();
         }
+        
 
 
         public override void WaitForElements()
