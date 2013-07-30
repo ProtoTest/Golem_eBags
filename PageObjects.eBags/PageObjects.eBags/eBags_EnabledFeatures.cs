@@ -9,6 +9,9 @@ namespace PageObjects.eBags
 {
     public class eBags_EnabledFeatures : BasePageObject
     {
+        //Store feature settings here for use in page objects
+        eBags_TestConfiguration TestConfig = new eBags_TestConfiguration();
+
         Element FaceBook = new Element("Facebook", By.Id("EnabledFeatures_0__IsEnabledFeatureActive"));
         Element Facebook_Logging = new Element("Facebook.Logging", By.Id("EnabledFeatures_1__IsEnabledFeatureActive"));
         Element Facebook_Sharing = new Element("Facebook.Sharing", By.Id("EnabledFeatures_2__IsEnabledFeatureActive"));
@@ -69,7 +72,21 @@ namespace PageObjects.eBags
             EnabledFeatures.Add(MerchandisedPage);
             EnabledFeatures.Add(AlternateImages);
             EnabledFeatures.Add(ListPageRedesign);
-            EnabledFeatures.Add(PDPRedesign);
+            EnabledFeatures.Add(PDPRedesign);            
+            for (int i = 0; i < EnabledFeatures.Count; i++)
+            {
+                bool enabled;
+                if (EnabledFeatures[i].GetAttribute("checked") == null)
+                {
+                    enabled = false;
+                }
+                if (EnabledFeatures[i].GetAttribute("checked") == "true")
+                {
+                    enabled = true;
+                }                
+                TestConfig.FeatureStatus(EnabledFeatures[i].name, i, enabled);
+
+            }
 
         }
 
@@ -82,14 +99,16 @@ namespace PageObjects.eBags
                     if (EnabledFeatures[FeatureID].GetAttribute("checked") == null)
                     {
                         EnabledFeatures[FeatureID].Click();
+                        TestConfig.Update(FeatureID, Enabled);
                     }
-                    //string derp = EnabledFeatures[FeatureID].GetAttribute("checked");
+                    
                 }
                 if(!Enabled)
                 {
                     if (EnabledFeatures[FeatureID].GetAttribute("checked") == "true")
                     {
                         EnabledFeatures[FeatureID].Click();
+                        TestConfig.Update(FeatureID, Enabled);
                     }
                     
                 }
