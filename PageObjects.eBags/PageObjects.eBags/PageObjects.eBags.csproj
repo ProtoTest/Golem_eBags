@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="eBags_EnabledFeatures.cs" />
+    <Compile Include="eBags_Feature.cs" />
     <Compile Include="eBags_SpitTests.cs" />
     <Compile Include="eBags_TabHeaderFooter.cs" />
     <Compile Include="eBags_TestConfiguration.cs" />

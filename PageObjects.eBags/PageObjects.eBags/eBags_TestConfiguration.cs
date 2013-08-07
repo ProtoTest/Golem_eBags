@@ -12,45 +12,37 @@ namespace PageObjects.eBags
          * won't.
          * There should be a value for all the features available on the site, however right now we're concentrating on HeaderFooter features
          */
-        public struct eBags_Features
-        {
-            public string FeatureName;
-            public int FeatureID;
-            public bool enabled = false;
 
-            public eBags_Features(string fname, int fid)
+
+        private static List<eBags_Feature> eBags_web_Features;
+
+        public static void FeatureStatus(eBags_Feature feature)
+        {
+            if (eBags_web_Features != null)
             {
-                FeatureName = fname;
-                FeatureID = fid;
-            }            
-        }
-
-        private const List<eBags_Features> eBags_web_Features;
-
-        public void FeatureStatus(string fName, int fID, bool onOff)
-        {
-            eBags_web_Features = new List<eBags_Features>();
-            eBags_Features feature = new eBags_Features();
-            feature.FeatureName = fName;
-            feature.FeatureID = fID;
-            feature.enabled = onOff;
-            eBags_web_Features.Add(feature);
+                eBags_web_Features.Add(feature);
+            }
+            else
+            {
+                eBags_web_Features = new List<eBags_Feature>();
+                eBags_web_Features.Add(feature);
+            }
 
         }
 
         //These two functions will check if the feature is enabled
-        public bool Enabled(int fID)
+        public static bool Enabled(int fID)
         {
             return eBags_web_Features[fID].enabled;
         }
-        public bool Enabled(string fName)
+        public static bool Enabled(string fName)
         {
             bool onOff;
-            eBags_Features feature = eBags_web_Features.Find
+            eBags_Feature feature = eBags_web_Features.Find
                 (
-                    delegate(eBags_Features ef)
+                    delegate(eBags_Feature ef)
                     {
-                        return ef.FeatureName = fName;
+                        return ef.FeatureName == fName;
                     }
                 );
             if(feature != null)
@@ -66,7 +58,7 @@ namespace PageObjects.eBags
         }
 
         //Update the status of the feature should only be called form the eBags_EnabledFeatures PageObject
-        public void Update(int fid, bool state)
+        public static void Update(int fid, bool state)
         {
             eBags_web_Features[fid].enabled = state;
         }
