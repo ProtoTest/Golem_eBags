@@ -15,7 +15,7 @@ namespace Tests.eBags
         [Test]
         public void TestSplit()
         {
-            eBags_SpitTests.OpenSplit("http://stintdev.ebags.com/internal/SplitTests").SetupSplit('B', 'B', 'A').ClickEnabledFeatures().FeatureSelector(0, true).FeatureSelector(5, true);
+            eBags_SpitTests.OpenSplit("http://stintdev.ebags.com/internal/SplitTests", 460).SetupSplit('B', 'B', 'A').ClickEnabledFeatures().ClickHomePage().checkHeader();
             Thread.Sleep(4000);
         }
 

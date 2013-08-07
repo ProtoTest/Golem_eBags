@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -27,9 +28,13 @@ namespace PageObjects.eBags
 
         Element InternalTools_Button = new Element("InternalTools_Button", By.XPath("//header/nav/ul/li[2]/a"));
         Element EnabledFeatures = new Element("EnabledFeatures", By.XPath("//*[@id='bodyWrapper']/div/ul/li[11]/a"));
+        
 
-        public static eBags_SpitTests OpenSplit(string url)
+        public static eBags_SpitTests OpenSplit(string url, int width)
         {
+            TestBaseClass.driver.Manage().Window.Size = new Size(width, 1080);
+            eBags_TestConfiguration.setNavURL(url);
+            eBags_TestConfiguration.setBrowserDimensions(TestBaseClass.driver.Manage().Window.Size.Width, TestBaseClass.driver.Manage().Window.Size.Height);
             TestBaseClass.driver.Navigate().GoToUrl(url);
             return new eBags_SpitTests();
         }
@@ -81,6 +86,7 @@ namespace PageObjects.eBags
             EnabledFeatures.WaitUntilPresent().Click();
             return new eBags_EnabledFeatures();
         }
+
         
 
 

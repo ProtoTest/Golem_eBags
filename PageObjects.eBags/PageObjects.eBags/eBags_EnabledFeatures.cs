@@ -10,7 +10,8 @@ namespace PageObjects.eBags
     public class eBags_EnabledFeatures : BasePageObject
     {
         //Store feature settings here for use in page objects
-        Element Submit_Button = new Element("Submit_Button", By.XPath("//body/div/form/input[2]"));
+        Element Submit_Button = new Element("Submit_Button", By.XPath("//input[@type='submit']"));
+        Element eBagsHomePage = new Element("eBagsHomePage", By.XPath("//header/nav/ul/li/a"));
         //This will be used to store features
         List<Element> EnabledFeatures;
         
@@ -88,7 +89,11 @@ namespace PageObjects.eBags
             return new eBags_EnabledFeatures();
         }
 
-
+        public eBags_TabHeaderFooter ClickHomePage()
+        {
+            eBagsHomePage.WaitUntilVisible().Click();
+            return new eBags_TabHeaderFooter();
+        }
 
 
 
