@@ -13,6 +13,7 @@ namespace PageObjects.eBags
         /* The new header footer page is live
          * Since HeaderFooter will be on most pages, future page object should Enherit from this pageObject
          * */
+        #region Mobile Size Header
         //Mobile Header
         Element PromoBar_Micro = new Element("PromoBar_Micro", By.Id("cpMicroPromoBar"));
         Element eBags_Logo = new Element("eBags_Logo", By.ClassName("logoCon"));
@@ -47,6 +48,10 @@ namespace PageObjects.eBags
         Element Sports_button = new Element("Sports", By.XPath("//*[@class='mainNav']/div/div[9]/div/div[4]/h2[1]/a"));
         Element Sale_Button = new Element("Sale", By.XPath("//*[@class='mainNav']/div/div[9]/div/div[4]/h2[2]/a"));
         Element Brands_Button = new Element("Brands", By.XPath("//*[@class='mainNav']/div/div[9]/div/div[4]/h2[3]/a"));
+        #endregion
+
+        
+        
 
 
         List<Element> MobileHeaderElements;
@@ -54,7 +59,7 @@ namespace PageObjects.eBags
         List<Element> MobileMenuButtons;
         List<Element> ShopDepartmentsButtons;
 
-
+        List<IWebElement> tempContainer;
 
         public eBags_TabHeaderFooter()
         {
@@ -93,6 +98,7 @@ namespace PageObjects.eBags
             ShopDepartmentsButtons.Add(Sale_Button);
             ShopDepartmentsButtons.Add(Brands_Button);
 
+            
         }
 
         public eBags_TabHeaderFooter checkHeader()

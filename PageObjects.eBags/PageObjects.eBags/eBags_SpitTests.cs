@@ -52,28 +52,28 @@ namespace PageObjects.eBags
             //The header-footer should have a selected by default 
             if (EmailSplit == 'A')
             {
-                EB_email_ASplit.WaitUntilPresent().Click();
+                EB_email_ASplit.WaitUntilVisible().Click();
             }
             else
             {
                 //BSplit
-                EB_email_BSplit.WaitUntilPresent().Click();
+                EB_email_BSplit.WaitUntilVisible().Click();
             }
             if (HFSplit == 'B')
             {
-                EB_HeaderFooter_BSplit.WaitUntilPresent().Click();
+                EB_HeaderFooter_BSplit.WaitUntilVisible().Click();
             }
             if (FSSplit == 'A')
             {
-                EB_FeaturedSort_ASplit.WaitUntilPresent().Click();
+                EB_FeaturedSort_ASplit.WaitUntilVisible().Click();
             }
             if (FSSplit == 'B')
             {
-                EB_FeaturedSort_BSplit.WaitUntilPresent().Click();
+                EB_FeaturedSort_BSplit.WaitUntilVisible().Click();
             }
             if (FSSplit == 'C')
             {
-                EB_FeaturedSort_CSplit.WaitUntilPresent().Click();
+                EB_FeaturedSort_CSplit.WaitUntilVisible().Click();
             }
 
 
@@ -82,8 +82,8 @@ namespace PageObjects.eBags
 
         public eBags_EnabledFeatures ClickEnabledFeatures()
         {
-            InternalTools_Button.WaitUntilPresent().Click();
-            EnabledFeatures.WaitUntilPresent().Click();
+            InternalTools_Button.WaitUntilVisible().Click();
+            EnabledFeatures.WaitUntilVisible().Click();
             return new eBags_EnabledFeatures();
         }
 
